@@ -1,9 +1,10 @@
 import App from './app';
+import Log from './utils/log';
 
 const app = new App(3000);
 
 app.on('deploy', port => {
-  console.log(`Started in port ${port}`);
+  Log.success(`Started in port ${port}`);
 });
 
 app.start();
