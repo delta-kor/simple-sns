@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.8",
+    "@types/lusca": "^1.6.2",
     "@types/node": "^14.11.1",
     "concurrently": "^5.3.0",
     "log-symbols": "^4.0.0",
@@ -25,6 +26,9 @@
   },
   "dependencies": {
     "chalk": "^4.1.0",
-    "express": "^4.17.1"
+    "compression": "^1.7.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "lusca": "^1.6.1"
   }
 }
