@@ -5,5 +5,19 @@
   "main": "dist/server.js",
   "repository": "https://github.com/delta-kor/simple-sns",
   "author": "delta-kor <deltakbot1@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "deploy": "node .",
+    "start": "yarn build && yarn deploy",
+    "dev:ts": "tsc -w",
+    "dev:node": "nodemon dist/server.js",
+    "dev": "concurrently -k -p \"[{name}]\" -n \"typescript,node\" -c \"cyan,green\" \"yarn dev:ts\" \"yarn dev:node\""
+  },
+  "devDependencies": {
+    "@types/node": "^14.11.1",
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.4",
+    "typescript": "^4.0.3"
+  }
 }
