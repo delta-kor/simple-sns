@@ -1,0 +1,9 @@
+{
+  "name": "simple-sns",
+  "version": "1.0.0",
+  "description": "simple sns for practice",
+  "main": "dist/server.js",
+  "repository": "https://github.com/delta-kor/simple-sns",
+  "author": "delta-kor <deltakbot1@gmail.com>",
+  "license": "MIT"
+}
