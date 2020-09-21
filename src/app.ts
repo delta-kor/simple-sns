@@ -2,6 +2,8 @@ import http, { Server } from 'http';
 import express, { Application } from 'express';
 import { AppEvent } from './types/event';
 import Kernel from './middlewares/kernel';
+import ApiRouter from './routes/api';
+import WebRouter from './routes/web';
 
 export default class App extends AppEvent {
   public port: number;
@@ -16,13 +18,21 @@ export default class App extends AppEvent {
   }
 
   public init(): void {
-    this.mountMiddlewares();
     this.emit('init');
+    this.mountMiddlewares();
+    this.mountRoutes();
+    this.emit('ready');
   }
 
   private mountMiddlewares(): void {
     const middlewares = Kernel.mount(this.application);
     this.emit('mount_middleware', middlewares);
+  }
+
+  private mountRoutes(): void {
+    this.application.use('/api', ApiRouter);
+    this.application.use(WebRouter);
+    this.emit('mount_route');
   }
 
   public start(): void {

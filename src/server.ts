@@ -4,11 +4,19 @@ import Log from './utils/log';
 const app = new App(3000);
 
 app.on('init', () => {
-  Log.info('Initialized app');
+  Log.info('Initializing app');
 });
 
-app.on('mount_middleware', (middlewares: number) => {
-  Log.info(`${middlewares} middlewares mounted`);
+app.on('mount_middleware', middlewares => {
+  Log.info(`${middlewares} Middlewares mounted`);
+});
+
+app.on('mount_route', () => {
+  Log.info('Routes mounted');
+});
+
+app.on('ready', () => {
+  Log.info('App ready');
 });
 
 app.on('deploy', port => {
