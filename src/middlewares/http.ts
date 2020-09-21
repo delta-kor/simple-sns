@@ -16,6 +16,7 @@ export default class Http extends Middleware {
       urlencoded({
         limit: Local.MAX_UPLOAD,
         parameterLimit: Local.MAX_PARAM,
+        extended: true,
       })
     );
     application.use(compression());
