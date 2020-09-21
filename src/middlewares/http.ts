@@ -1,6 +1,7 @@
 import { Application, json, urlencoded } from 'express';
 import compression from 'compression';
 import lusca from 'lusca';
+import helmet from 'helmet';
 import { Middleware } from '../types/middleware';
 import Local from '../utils/local';
 
@@ -18,8 +19,12 @@ export default class Http extends Middleware {
       })
     );
     application.use(compression());
-    application.use(lusca.xframe('SAMEORIGIN'));
-    application.use(lusca.xssProtection(true));
-    application.use(lusca.csrf());
+    application.use(
+      lusca({
+        xframe: 'sameorigin',
+        xssProtection: true,
+      })
+    );
+    application.use(helmet());
   }
 }
