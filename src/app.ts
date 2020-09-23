@@ -4,7 +4,6 @@ import express, { Application } from 'express';
 import Kernel from './middlewares/kernel';
 import ApiRouter from './routes/api';
 import WebRouter from './routes/web';
-import { AppEvent } from './types/event';
 
 export declare interface App {
   emit<E extends keyof AppEvent>(event: E, ...args: Parameters<AppEvent[E]>): boolean;

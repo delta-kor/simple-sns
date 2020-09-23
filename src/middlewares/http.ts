@@ -3,10 +3,9 @@ import compression from 'compression';
 import lusca from 'lusca';
 import helmet from 'helmet';
 import cors from 'cors';
-import { Middleware } from '../types/middleware';
 import Local from '../utils/local';
 
-export default class Http extends Middleware {
+export default class Http implements Middleware {
   public static mount(application: Application): void {
     application.use(
       json({
