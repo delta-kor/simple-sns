@@ -1,0 +1,10 @@
+extends ../layouts/main
+
+block content
+  h1 Welcome
+  p Sign up or login
+
+  button.link(data-href='/signup') Sign Up
+  button.link(data-href='/login') Login
+
+  script(src='/button.js')
