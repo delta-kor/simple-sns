@@ -4,6 +4,7 @@ import express, { Application } from 'express';
 import Kernel from './middlewares/kernel';
 import ApiRouter from './routes/api';
 import WebRouter from './routes/web';
+import Exception from './middlewares/exception';
 
 export declare interface App {
   emit<E extends keyof AppEvent>(event: E, ...args: Parameters<AppEvent[E]>): boolean;
@@ -38,6 +39,7 @@ export class App extends EventEmitter {
   private mountRoutes(): void {
     this.application.use('/api', ApiRouter);
     this.application.use(WebRouter);
+    Exception.mount(this.application);
     this.emit('mount_route');
   }
 
