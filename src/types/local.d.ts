@@ -4,4 +4,6 @@ declare interface LocalValue {
   MAX_PARAM: number;
   CACHE: number;
   DB: string;
+  SECRET: string;
+  SESSION_AGE: number;
 }

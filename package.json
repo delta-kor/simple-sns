@@ -20,7 +20,9 @@
   "devDependencies": {
     "@types/compression": "^1.7.0",
     "@types/cors": "^2.8.7",
+    "@types/csurf": "^1.9.36",
     "@types/express": "^4.17.8",
+    "@types/express-session": "^1.17.0",
     "@types/lusca": "^1.6.2",
     "@types/mongoose": "^5.7.36",
     "@types/node": "^14.11.1",
@@ -34,9 +36,12 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "compression": "^1.7.4",
+    "connect-mongo": "^3.2.0",
     "cors": "^2.8.5",
+    "csurf": "^1.11.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "helmet": "^4.1.1",
     "lusca": "^1.6.1",
     "mongoose": "^5.10.6",

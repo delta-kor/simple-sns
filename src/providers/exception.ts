@@ -10,7 +10,15 @@ export default class Exception {
         return res.json({ resolved: false, status: -1000, message: 'Not found' });
       return res.type('text').send('404');
     });
-    application.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    application.use((err: Error | any, req: Request, res: Response, next: NextFunction) => {
+      if (err.code === 'EBADCSRFTOKEN') {
+        res.status(403);
+        if (req.accepts('html')) return res.render('error');
+        if (req.accepts('json'))
+          return res.json({ resolved: false, status: -3000, message: 'CSRF error' });
+        return res.type('text').send('CSRF error');
+      }
+
       Log.error(err.stack);
       res.status(500);
       if (req.accepts('html')) return res.render('error');
