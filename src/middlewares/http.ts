@@ -23,10 +23,14 @@ export default class Http implements Middleware {
     application.use(
       lusca({
         xframe: 'sameorigin',
-        xssProtection: true,
+        xssProtection: { enabled: true, mode: 'block' },
       })
     );
-    application.use(helmet());
+    application.use(
+      helmet({
+        xssFilter: false,
+      })
+    );
     application.use(
       cors({
         origin: Local.URL,
