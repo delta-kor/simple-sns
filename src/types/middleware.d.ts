@@ -1,5 +1,3 @@
-import { Application } from 'express';
-
-export class Middleware {
-  public static mount(application: Application): void;
+declare class Middleware {
+  static mount(application: any): void;
 }

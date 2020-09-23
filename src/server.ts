@@ -1,4 +1,4 @@
-import App from './app';
+import { App } from './app';
 import Log from './utils/log';
 
 const app = new App(3000);

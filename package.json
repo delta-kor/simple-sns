@@ -11,8 +11,8 @@
     "deploy": "node .",
     "start": "yarn build && yarn deploy",
     "dev:ts": "tsc -w",
-    "dev:node": "nodemon dist/server.js",
-    "dev": "concurrently -k -p \"[{name}]\" -n \"typescript,node\" -c \"cyan,green\" \"yarn dev:ts\" \"yarn dev:node\""
+    "dev:node": "nodemon",
+    "dev": "concurrently \"yarn dev:ts\" \"yarn dev:node\""
   },
   "devDependencies": {
     "@types/compression": "^1.7.0",
@@ -33,6 +33,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.1.1",
-    "lusca": "^1.6.1"
+    "lusca": "^1.6.1",
+    "pug": "^3.0.0"
   }
 }
