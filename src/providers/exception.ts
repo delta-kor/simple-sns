@@ -1,8 +1,8 @@
 import { Application, NextFunction, Request, Response } from 'express';
 import Log from '../utils/log';
 
-export default class Exception implements Middleware {
-  static mount(application: Application): void {
+export default class Exception {
+  static load(application: Application): void {
     application.use((req: Request, res: Response) => {
       res.status(404);
       if (req.accepts('html')) return res.render('not_found');

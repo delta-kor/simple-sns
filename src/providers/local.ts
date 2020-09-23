@@ -7,6 +7,7 @@ const Local: LocalValue = {
   MAX_UPLOAD: process.env.MAX_UPLOAD,
   MAX_PARAM: parseInt(process.env.MAX_PARAM, 10),
   CACHE: parseInt(process.env.CACHE, 10),
+  DB: process.env.DB,
 };
 
 export default Local;

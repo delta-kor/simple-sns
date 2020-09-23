@@ -1,5 +1,5 @@
 import { Application, static as Statics } from 'express';
-import Local from '../utils/local';
+import Local from '../providers/local';
 
 export default class Static implements Middleware {
   static mount(application: Application): void {

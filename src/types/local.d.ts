@@ -3,4 +3,5 @@ declare interface LocalValue {
   MAX_UPLOAD: string;
   MAX_PARAM: number;
   CACHE: number;
+  DB: string;
 }

@@ -4,7 +4,8 @@ import express, { Application } from 'express';
 import Kernel from './middlewares/kernel';
 import ApiRouter from './routes/api';
 import WebRouter from './routes/web';
-import Exception from './middlewares/exception';
+import Exception from './providers/exception';
+import Database from './providers/database';
 
 export declare interface App {
   emit<E extends keyof AppEvent>(event: E, ...args: Parameters<AppEvent[E]>): boolean;
@@ -24,9 +25,10 @@ export class App extends EventEmitter {
     this.server = http.createServer(this.application);
   }
 
-  public init(): void {
+  public async init(): Promise<void> {
     this.emit('init');
     this.mountMiddlewares();
+    await this.loadDatabase();
     this.mountRoutes();
     this.emit('ready');
   }
@@ -36,10 +38,15 @@ export class App extends EventEmitter {
     this.emit('mount_middleware', middlewares);
   }
 
+  private async loadDatabase(): Promise<void> {
+    await Database.load();
+    this.emit('load_database');
+  }
+
   private mountRoutes(): void {
     this.application.use('/api', ApiRouter);
     this.application.use(WebRouter);
-    Exception.mount(this.application);
+    Exception.load(this.application);
     this.emit('mount_route');
   }
 

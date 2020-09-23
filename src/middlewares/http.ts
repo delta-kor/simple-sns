@@ -3,7 +3,7 @@ import compression from 'compression';
 import lusca from 'lusca';
 import helmet from 'helmet';
 import cors from 'cors';
-import Local from '../utils/local';
+import Local from '../providers/local';
 
 export default class Http implements Middleware {
   public static mount(application: Application): void {
