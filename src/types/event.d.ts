@@ -1,4 +1,4 @@
-export interface AppEvent {
+declare interface AppEvent {
   init: () => void;
   ready: () => void;
   deploy: (port: number) => void;
