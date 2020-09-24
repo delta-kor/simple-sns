@@ -9,12 +9,12 @@
   "scripts": {
     "build": "yarn build:ts && yarn build:parcel",
     "build:ts": "tsc",
-    "build:parcel": "parcel build views/scripts/**/*.ts --out-dir dist/client --no-source-maps",
+    "build:parcel": "parcel build views/scripts/vendor.ts --out-dir dist/client --no-source-maps",
     "deploy": "node .",
     "start": "yarn build && yarn deploy",
     "dev:ts": "tsc -w",
     "dev:node": "nodemon",
-    "dev:parcel": "parcel watch views/scripts/**/*.ts --out-dir dist/client",
+    "dev:parcel": "parcel watch views/scripts/vendor.ts --out-dir dist/client",
     "dev": "concurrently \"yarn dev:ts\" \"yarn dev:node\" \"yarn dev:parcel\""
   },
   "devDependencies": {
