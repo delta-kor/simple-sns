@@ -4,10 +4,10 @@ block content
   h1 Signup
   p Signup account
 
-  input(type='text' placeholder='email')
-  input(type='text' placeholder='password')
-  input(type='text' placeholder='password confirm')
+  input#email(type='text' placeholder='email')
+  input#password(type='text' placeholder='password')
+  input#confirm(type='text' placeholder='password confirm')
 
-  button Signup
+  button.action(data-type='signup') Signup
 
   script(src='/vendor.js')
