@@ -4,7 +4,7 @@ import Output, { Status } from '../../providers/output';
 
 export default class CryptoController {
   static resolve(req: Request, res: Response, next: NextFunction): any {
-    const { body } = req;
+    const body = req.body;
     if (typeof body !== 'object') {
       Output.reject(res, Status.CRYPTO_INVALID_BODY_TYPE);
       return false;
@@ -19,7 +19,7 @@ export default class CryptoController {
     iv = Buffer.from(iv, 'base64');
     key = Buffer.from(key, 'base64');
 
-    const { ticket } = req;
+    const ticket = req.session.ticket;
     if (!ticket) {
       Output.reject(res, Status.CRYPTO_INVALID_TICKET);
       return false;

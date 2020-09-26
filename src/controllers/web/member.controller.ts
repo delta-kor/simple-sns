@@ -6,7 +6,7 @@ export default class MemberController {
     res.render('member/signup', {
       title: 'Signup',
       description: 'Signup to simple-sns',
-      key: Transform.encode(req.ticket.public),
+      key: Transform.encode(req.session.ticket.public),
       csrf: req.csrfToken(),
     });
     return true;
@@ -15,7 +15,7 @@ export default class MemberController {
     res.render('member/login', {
       title: 'Login',
       description: 'Login to simple-sns',
-      key: Transform.encode(req.ticket.public),
+      key: Transform.encode(req.session.ticket.public),
       csrf: req.csrfToken(),
     });
     return true;
