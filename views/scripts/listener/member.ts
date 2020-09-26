@@ -1,4 +1,4 @@
-import SignupManager from './page/signup';
+import SignupManager from '../page/signup';
 
 const buttons = document.querySelectorAll<HTMLButtonElement>('button.action');
 
@@ -8,7 +8,7 @@ if (buttons.length) {
       const type = button.getAttribute('data-type');
       if (type === 'signup') {
         const manager = new SignupManager();
-        manager.signup();
+        void manager.signup();
       }
     })
   );
