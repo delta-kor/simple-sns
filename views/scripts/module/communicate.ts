@@ -54,7 +54,7 @@ export default class Communicate {
       data: payload,
       headers: {
         Accept: 'application/json',
-        'CSRF-Token': this.csrf,
+        'Csrf-Token': this.csrf,
       },
     });
     return response.data;
