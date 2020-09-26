@@ -11,12 +11,14 @@ interface Payload {
 
 export default class Communicate {
   private readonly key: Buffer;
+  private readonly csrf: string;
 
   constructor() {
     const key = Util.input('key');
     if (!key) throw new Error('Key is not resolved');
 
     this.key = Buffer.from(key, 'base64');
+    this.csrf = Util.input('csrf');
   }
 
   private encrypt(payload: any): Payload {
@@ -51,7 +53,8 @@ export default class Communicate {
       method,
       data: payload,
       headers: {
-        accept: 'application/json',
+        Accept: 'application/json',
+        'CSRF-Token': this.csrf,
       },
     });
     return response.data;

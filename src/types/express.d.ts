@@ -3,6 +3,10 @@ declare global {
     interface Request {
       ticket: TicketValue;
     }
+
+    interface Session {
+      csrfSecret: string;
+    }
   }
 }
 

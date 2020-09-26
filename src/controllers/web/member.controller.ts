@@ -7,6 +7,7 @@ export default class MemberController {
       title: 'Signup',
       description: 'Signup to simple-sns',
       key: Transform.encode(req.ticket.public),
+      csrf: req.csrfToken(),
     });
     return true;
   }
@@ -15,6 +16,7 @@ export default class MemberController {
       title: 'Login',
       description: 'Login to simple-sns',
       key: Transform.encode(req.ticket.public),
+      csrf: req.csrfToken(),
     });
     return true;
   }
