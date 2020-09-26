@@ -3,7 +3,10 @@ import Ticket from '../../providers/ticket';
 
 export default class TicketController {
   static async book(req: Request, res: Response, next: NextFunction) {
-    req.ticket = await Ticket.book();
+    req.session.ticket = await Ticket.book();
+    req.session.save(err => {
+      if (err) next(err);
+    });
     return next();
   }
 }
