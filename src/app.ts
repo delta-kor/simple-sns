@@ -25,7 +25,7 @@ export class App extends EventEmitter {
     this.server = http.createServer(this.application);
   }
 
-  public async init(): Promise<void> {
+  async init(): Promise<void> {
     this.emit('init');
     this.mountMiddlewares();
     await this.loadDatabase();
