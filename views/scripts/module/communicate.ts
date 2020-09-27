@@ -46,8 +46,9 @@ export default class Communicate {
     };
   }
 
-  async send<T>(url: string, payload: any, method: Method = 'POST'): Promise<T> {
+  async send<T>(url: string, payload: any, method: Method = 'POST'): Promise<T | void> {
     payload = this.encrypt(payload);
+
     const response = await axios({
       url,
       method,
@@ -57,6 +58,7 @@ export default class Communicate {
         'Csrf-Token': this.csrf,
       },
     });
+
     return response.data;
   }
 }

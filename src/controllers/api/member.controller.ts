@@ -7,5 +7,8 @@ export interface SignupPayload {
 }
 
 export default class MemberController {
-  static signup(req: Request, res: Response): any {}
+  static signup(req: Request, res: Response): any {
+    const body: SignupPayload = req.body;
+    console.log(body);
+  }
 }
