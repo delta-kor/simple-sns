@@ -1,12 +1,20 @@
 import crypto from 'crypto';
 import axios, { Method } from 'axios';
 import Util from '../util';
+import { Status } from '../../../src/providers/output';
 
-interface Payload {
+export interface Payload {
   iv: string;
   key: string;
   cipher: string;
   hash: string;
+}
+
+export interface Response {
+  resolved: boolean;
+  status: Status;
+  message?: string;
+  data?: any;
 }
 
 export default class Communicate {
@@ -46,7 +54,7 @@ export default class Communicate {
     };
   }
 
-  async send<T>(url: string, payload: any, method: Method = 'POST'): Promise<T | void> {
+  async send<T>(url: string, payload: any, method: Method = 'POST'): Promise<T> {
     payload = this.encrypt(payload);
 
     const response = await axios({
