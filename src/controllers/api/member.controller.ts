@@ -12,12 +12,14 @@ export default class MemberController {
   static signup(req: Request, res: Response): any {
     const body: SignupPayload = req.body;
 
+    body.email = validator.normalizeEmail(body.email) || '';
+
     if (!validator.isEmail(body.email)) {
       Output.reject(res, Status.SIGNUP_INVALID_EMAIL);
       return false;
     }
 
-    if (body.password.length < 8) {
+    if (validator.isLength(body.password, { max: 8 })) {
       Output.reject(res, Status.SIGNUP_SHORT_PASSWORD);
       return false;
     }
