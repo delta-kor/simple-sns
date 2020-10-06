@@ -1,5 +1,6 @@
 import Communicate, { Response } from '../module/communicate';
 import Util from '../util';
+import { Status } from '../../../src/providers/output';
 
 class LoginManager {
   private communicate: Communicate;
@@ -17,6 +18,18 @@ class LoginManager {
     });
 
     const status = response.status;
+
+    if (status === Status.LOGIN_EMPTY_EMAIL) {
+      return alert('Please enter email');
+    }
+
+    if (status === Status.LOGIN_EMPTY_PASSWORD) {
+      return alert('Please enter password');
+    }
+
+    if (status === Status.LOGIN_USER_NOT_FOUND) {
+      return alert('Email or password not found');
+    }
 
     if (!response.resolved) {
       return alert(`Signup failed [${status}]`);
