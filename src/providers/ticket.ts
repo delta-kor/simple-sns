@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 
 export default class Ticket {
-  static book(): Promise<TicketValue> {
+  public static book(): Promise<TicketValue> {
     return new Promise<TicketValue>((resolve, reject) => {
       crypto.generateKeyPair(
         'rsa',

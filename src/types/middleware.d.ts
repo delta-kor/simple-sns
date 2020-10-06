@@ -1,3 +1,3 @@
 declare class Middleware {
-  static mount(application: any): void;
+  public static mount(application: any): void;
 }

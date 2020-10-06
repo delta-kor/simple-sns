@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import Transform from '../../utils/transform';
 
 export default class MemberController {
-  static signup(req: Request, res: Response): any {
+  public static signup(req: Request, res: Response): any {
     return res.render('member/signup', {
       title: 'Signup',
       description: 'Signup to simple-sns',
@@ -10,7 +10,8 @@ export default class MemberController {
       csrf: req.csrfToken(),
     });
   }
-  static login(req: Request, res: Response): any {
+
+  public static login(req: Request, res: Response): any {
     return res.render('member/login', {
       title: 'Login',
       description: 'Login to simple-sns',

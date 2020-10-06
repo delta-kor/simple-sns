@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import Output, { Status } from '../../providers/output';
 
 export default class CryptoController {
-  static resolve(req: Request, res: Response, next: NextFunction): any {
+  public static resolve(req: Request, res: Response, next: NextFunction): any {
     const body = req.body;
     if (typeof body !== 'object') {
       return Output.reject(res, Status.CRYPTO_INVALID_BODY_TYPE);

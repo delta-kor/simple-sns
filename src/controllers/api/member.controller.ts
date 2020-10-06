@@ -9,7 +9,7 @@ export interface SignupPayload {
 }
 
 export default class MemberController {
-  static signup(req: Request, res: Response): any {
+  public static signup(req: Request, res: Response): any {
     const body: SignupPayload = req.body;
 
     body.email = validator.normalizeEmail(body.email) || '';

@@ -17,7 +17,7 @@ export enum Status {
 }
 
 export default class Output {
-  static resolve(
+  public static resolve(
     res: Response,
     data?: any,
     status: Status = Status.SUCCESS,
@@ -31,7 +31,7 @@ export default class Output {
     });
   }
 
-  static reject(res: Response, status: Status, message?: string): void {
+  public static reject(res: Response, status: Status, message?: string): void {
     res.json({
       resolved: false,
       status,

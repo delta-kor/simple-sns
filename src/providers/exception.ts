@@ -3,7 +3,7 @@ import Log from '../utils/log';
 import Output, { Status } from './output';
 
 export default class Exception {
-  static load(application: Application): void {
+  public static load(application: Application): void {
     application.use((req: Request, res: Response) => {
       res.status(404);
       if (req.accepts('html'))

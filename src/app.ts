@@ -25,14 +25,6 @@ export class App extends EventEmitter {
     this.server = http.createServer(this.application);
   }
 
-  async init(): Promise<void> {
-    this.emit('init');
-    this.mountMiddlewares();
-    await this.loadDatabase();
-    this.mountRoutes();
-    this.emit('ready');
-  }
-
   private mountMiddlewares(): void {
     const middlewares = Kernel.mount(this.application);
     this.emit('mount_middleware', middlewares);
@@ -48,6 +40,14 @@ export class App extends EventEmitter {
     this.application.use(WebRouter);
     Exception.load(this.application);
     this.emit('mount_route');
+  }
+
+  public async init(): Promise<void> {
+    this.emit('init');
+    this.mountMiddlewares();
+    await this.loadDatabase();
+    this.mountRoutes();
+    this.emit('ready');
   }
 
   public start(): void {
