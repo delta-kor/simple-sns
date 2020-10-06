@@ -39,7 +39,6 @@ export default class MemberController {
 
   public static async login(req: Request, res: Response, next: NextFunction): Promise<any> {
     const body: LoginPayload = req.body;
-    body.email = validator.normalizeEmail(body.email) || '';
 
     if (validator.isEmpty(body.email)) {
       return Output.reject(res, Status.LOGIN_EMPTY_EMAIL);
@@ -48,6 +47,8 @@ export default class MemberController {
     if (validator.isEmpty(body.password)) {
       return Output.reject(res, Status.LOGIN_EMPTY_PASSWORD);
     }
+
+    body.email = validator.normalizeEmail(body.email) || '';
 
     const user = await User.getUser(body.email, body.password);
     if (!user) {
