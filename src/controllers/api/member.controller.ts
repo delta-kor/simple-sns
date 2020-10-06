@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import validator from 'validator';
 import Output, { Status } from '../../providers/output';
+import User from '../../models/user';
 
 export interface SignupPayload {
   email: string;
@@ -9,7 +10,7 @@ export interface SignupPayload {
 }
 
 export default class MemberController {
-  public static signup(req: Request, res: Response): any {
+  public static async signup(req: Request, res: Response): Promise<any> {
     const body: SignupPayload = req.body;
 
     body.email = validator.normalizeEmail(body.email) || '';
@@ -25,6 +26,9 @@ export default class MemberController {
     if (!validator.equals(body.password, body.confirm)) {
       return Output.reject(res, Status.SIGNUP_PASSWORD_UNMATCH);
     }
+
+    const created = await User.createUser(body.email, body.password);
+    if (!created) return Output.reject(res, Status.SIGNUP_EXISTING_USER);
 
     return Output.resolve(res);
   }

@@ -32,5 +32,15 @@ export default class SignupManager {
     if (status === Status.SIGNUP_PASSWORD_UNMATCH) {
       return alert('Password unmatched');
     }
+
+    if (status === Status.SIGNUP_EXISTING_USER) {
+      return alert('Email already exists');
+    }
+
+    if (!response.resolved) {
+      return alert('Signup failed');
+    }
+
+    alert('Success!');
   }
 }

@@ -13,6 +13,8 @@ export interface UserDocument extends Document {
 export interface UserModel extends Model<UserDocument> {
   getUserByUUID(uuid: string): Promise<UserDocument | null>;
   getUserByEmail(email: string): Promise<UserDocument | null>;
+  emailExists(email: string): Promise<boolean>;
+  createUser(email: string, password: string): Promise<false | UserDocument>;
 }
 
 const UserSchema = new Schema<UserDocument>({
@@ -53,6 +55,22 @@ UserSchema.statics.getUserByUUID = async function (uuid: string): Promise<UserDo
 UserSchema.statics.getUserByUUID = async function (email: string): Promise<UserDocument | null> {
   const user = await this.findOne({ email }).exec();
   return user || null;
+};
+
+UserSchema.statics.emailExists = async function (email: string): Promise<boolean> {
+  const user = await this.findOne({ email }).exec();
+  return !!user;
+};
+
+UserSchema.statics.createUser = async function (
+  email: string,
+  password: string
+): Promise<false | UserDocument> {
+  const exists = await User.emailExists(email);
+  if (exists) return false;
+
+  const user = new User({ email, password });
+  return user.save();
 };
 
 const User = model<UserDocument, UserModel>('user', UserSchema);
