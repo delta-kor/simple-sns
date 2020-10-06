@@ -14,7 +14,7 @@ export interface LoginPayload {
   password: string;
 }
 
-export default class MemberController {
+export default class AuthController {
   public static async signup(req: Request, res: Response): Promise<any> {
     const body: SignupPayload = req.body;
     body.email = validator.normalizeEmail(body.email) || '';

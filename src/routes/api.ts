@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import CryptoController from '../controllers/api/crypto.controller';
-import MemberController from '../controllers/api/member.controller';
+import AuthController from '../controllers/api/auth.controller';
 
 const router = Router();
 
-router.post('/signup', CryptoController.resolve, MemberController.signup);
-router.post('/login', CryptoController.resolve, MemberController.login);
+router.post('/signup', CryptoController.resolve, AuthController.signup);
+router.post('/login', CryptoController.resolve, AuthController.login);
 
 export default router;
