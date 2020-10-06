@@ -41,7 +41,7 @@ class SignupManager {
       return alert(`Signup failed [${status}]`);
     }
 
-    alert('Success!');
+    location.href = new URLSearchParams(location.search).get('go') || '/';
   }
 }
 
