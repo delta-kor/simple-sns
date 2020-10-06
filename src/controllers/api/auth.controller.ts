@@ -16,6 +16,8 @@ export interface LoginPayload {
 
 export default class AuthController {
   public static async signup(req: Request, res: Response): Promise<any> {
+    if (req.isAuthenticated()) return Output.reject(res, Status.SIGNUP_ALREADY_LOGINED);
+
     const body: SignupPayload = req.body;
     body.email = validator.normalizeEmail(body.email) || '';
 
@@ -38,6 +40,8 @@ export default class AuthController {
   }
 
   public static async login(req: Request, res: Response, next: NextFunction): Promise<any> {
+    if (req.isAuthenticated()) return Output.reject(res, Status.LOGIN_ALREADY_LOGINED);
+
     const body: LoginPayload = req.body;
 
     if (validator.isEmpty(body.email)) {
