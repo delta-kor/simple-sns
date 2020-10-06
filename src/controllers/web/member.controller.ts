@@ -5,7 +5,7 @@ export default class MemberController {
   public static signup(req: Request, res: Response): any {
     if (req.isAuthenticated()) return res.redirect('/');
     return res.render('member/signup', {
-      title: 'Signup',
+      title: 'Signup | Simple-SNS',
       description: 'Signup to simple-sns',
       key: Transform.encode(req.session.ticket.public),
       csrf: req.csrfToken(),
@@ -15,7 +15,7 @@ export default class MemberController {
   public static login(req: Request, res: Response): any {
     if (req.isAuthenticated()) return res.redirect('/');
     return res.render('member/login', {
-      title: 'Login',
+      title: 'Login | Simple-SNS',
       description: 'Login to simple-sns',
       key: Transform.encode(req.session.ticket.public),
       csrf: req.csrfToken(),
