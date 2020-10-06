@@ -18,7 +18,7 @@ export interface UserModel extends Model<UserDocument> {
 }
 
 const UserSchema = new Schema<UserDocument>({
-  uuid: { type: String, required: true, unique: true, default: () => UUID.generate(8) },
+  uuid: { type: String, required: true, unique: true, default: () => UUID.generate(16) },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   nickname: { type: String },
