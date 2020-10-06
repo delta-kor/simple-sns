@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt-nodejs';
 import UUID from '../utils/uuid';
-import { Document, model, Schema } from 'mongoose';
+import { Document, Model, model, Schema } from 'mongoose';
 
 export interface UserDocument extends Document {
   uuid: string;
@@ -8,6 +8,11 @@ export interface UserDocument extends Document {
   password: string;
   nickname: string;
   comparePassword: (password: string) => Promise<boolean>;
+}
+
+export interface UserModel extends Model<UserDocument> {
+  getUserByUUID(uuid: string): Promise<UserDocument | null>;
+  getUserByEmail(email: string): Promise<UserDocument | null>;
 }
 
 const UserSchema = new Schema<UserDocument>({
@@ -31,9 +36,7 @@ UserSchema.pre<UserDocument>('save', function (next) {
   });
 });
 
-UserSchema.methods.comparePassword = async function comparePassword(
-  password: string
-): Promise<boolean> {
+UserSchema.methods.comparePassword = async function (password: string): Promise<boolean> {
   return new Promise<boolean>((resolve, reject) => {
     bcrypt.compare(password, this.password, (error, matches) => {
       if (error) return reject(error);
@@ -42,6 +45,16 @@ UserSchema.methods.comparePassword = async function comparePassword(
   });
 };
 
-const User = model<UserDocument>('user', UserSchema);
+UserSchema.statics.getUserByUUID = async function (uuid: string): Promise<UserDocument | null> {
+  const user = await this.findOne({ uuid }).exec();
+  return user || null;
+};
+
+UserSchema.statics.getUserByUUID = async function (email: string): Promise<UserDocument | null> {
+  const user = await this.findOne({ email }).exec();
+  return user || null;
+};
+
+const User = model<UserDocument, UserModel>('user', UserSchema);
 
 export default User;
