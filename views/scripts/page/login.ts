@@ -14,7 +14,6 @@ class LoginManager {
     const response = await this.communicate.send<Response>('/api/login', {
       email,
       password,
-      confirm,
     });
 
     const status = response.status;

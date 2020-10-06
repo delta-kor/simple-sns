@@ -13,8 +13,8 @@ export interface UserDocument extends Document {
 export interface UserModel extends Model<UserDocument> {
   getUserByUUID(uuid: string): Promise<UserDocument | null>;
   getUserByEmail(email: string): Promise<UserDocument | null>;
-  emailExists(email: string): Promise<boolean>;
-  createUser(email: string, password: string): Promise<false | UserDocument>;
+  getUser(email: string, password: string): Promise<UserDocument | null>;
+  createUser(email: string, password: string): Promise<UserDocument | false>;
 }
 
 const UserSchema = new Schema<UserDocument>({
@@ -52,21 +52,26 @@ UserSchema.statics.getUserByUUID = async function (uuid: string): Promise<UserDo
   return user || null;
 };
 
-UserSchema.statics.getUserByUUID = async function (email: string): Promise<UserDocument | null> {
+UserSchema.statics.getUserByEmail = async function (email: string): Promise<UserDocument | null> {
   const user = await this.findOne({ email }).exec();
   return user || null;
 };
 
-UserSchema.statics.emailExists = async function (email: string): Promise<boolean> {
-  const user = await this.findOne({ email }).exec();
-  return !!user;
+UserSchema.statics.getUser = async function (
+  email: string,
+  password: string
+): Promise<UserDocument | null> {
+  const user = await User.getUserByEmail(email);
+  if (!user) return null;
+
+  return (await user.comparePassword(password)) ? user : null;
 };
 
 UserSchema.statics.createUser = async function (
   email: string,
   password: string
-): Promise<false | UserDocument> {
-  const exists = await User.emailExists(email);
+): Promise<UserDocument | false> {
+  const exists = await User.getUserByEmail(email);
   if (exists) return false;
 
   const user = new User({ email, password });
