@@ -65,6 +65,7 @@ export default class Communicate {
         Accept: 'application/json',
         'Csrf-Token': this.csrf,
       },
+      validateStatus: () => true,
     });
 
     return response.data;

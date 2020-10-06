@@ -1,6 +1,9 @@
 extends ../../layouts/main
 
 block content
+  button.back Back
+  button.link(data-href='/') Main
+
   h1 Signup
   p Signup account
 
@@ -11,4 +14,4 @@ block content
   input#password(type='password' placeholder='password')
   input#confirm(type='password' placeholder='password confirm')
 
-  button.action(data-type='signup') Signup
+  button#signup Signup

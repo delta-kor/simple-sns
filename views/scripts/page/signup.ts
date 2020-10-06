@@ -2,7 +2,7 @@ import Util from '../util';
 import Communicate, { Response } from '../module/communicate';
 import { Status } from '../../../src/providers/output';
 
-export default class SignupManager {
+class SignupManager {
   private communicate: Communicate;
 
   constructor() {
@@ -38,9 +38,15 @@ export default class SignupManager {
     }
 
     if (!response.resolved) {
-      return alert('Signup failed');
+      return alert(`Signup failed [${status}]`);
     }
 
     alert('Success!');
   }
 }
+
+const signupManager = new SignupManager();
+
+Util.id<HTMLButtonElement>('signup').addEventListener('click', () => {
+  void signupManager.signup();
+});

@@ -1,10 +1,16 @@
 extends ../../layouts/main
 
 block content
+  button.back Back
+  button.link(data-href='/') Main
+
   h1 Login
   p Login account
 
-  input(type='text' placeholder='email')
-  input(type='text' placeholder='password')
+  input#key(type='hidden' value= key)
+  input#csrf(type='hidden' value= csrf)
 
-  button Login
+  input#email(type='text' placeholder='email')
+  input#password(type='text' placeholder='password')
+
+  button#login Login
