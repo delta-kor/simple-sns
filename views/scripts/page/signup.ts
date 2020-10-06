@@ -22,18 +22,15 @@ export default class SignupManager {
     const status = response.status;
 
     if (status === Status.SIGNUP_INVALID_EMAIL) {
-      alert('Invalid email');
-      return false;
+      return alert('Invalid email');
     }
 
     if (status === Status.SIGNUP_SHORT_PASSWORD) {
-      alert('Password must be more than 8 characters');
-      return false;
+      return alert('Password must be more than 8 characters');
     }
 
     if (status === Status.SIGNUP_PASSWORD_UNMATCH) {
-      alert('Password unmatched');
-      return false;
+      return alert('Password unmatched');
     }
   }
 }

@@ -6,14 +6,12 @@ export default class CryptoController {
   static resolve(req: Request, res: Response, next: NextFunction): any {
     const body = req.body;
     if (typeof body !== 'object') {
-      Output.reject(res, Status.CRYPTO_INVALID_BODY_TYPE);
-      return false;
+      return Output.reject(res, Status.CRYPTO_INVALID_BODY_TYPE);
     }
 
     let { iv, key, cipher, hash } = body;
     if (!iv || !key || !cipher || !hash) {
-      Output.reject(res, Status.CRYPTO_INVALID_PARAMS);
-      return false;
+      return Output.reject(res, Status.CRYPTO_INVALID_PARAMS);
     }
 
     iv = Buffer.from(iv, 'base64');
@@ -21,8 +19,7 @@ export default class CryptoController {
 
     const ticket = req.session.ticket;
     if (!ticket) {
-      Output.reject(res, Status.CRYPTO_INVALID_TICKET);
-      return false;
+      return Output.reject(res, Status.CRYPTO_INVALID_TICKET);
     }
 
     const encryptionKey = crypto.privateDecrypt(ticket.private, key);
@@ -35,8 +32,7 @@ export default class CryptoController {
     const verifyHash = hmac.digest('base64');
 
     if (hash !== verifyHash) {
-      Output.reject(res, Status.CRYPTO_INVALID_HMAC);
-      return false;
+      return Output.reject(res, Status.CRYPTO_INVALID_HMAC);
     }
 
     let data;
@@ -44,13 +40,11 @@ export default class CryptoController {
     try {
       data = JSON.parse(payload);
     } catch (e) {
-      Output.reject(res, Status.CRYPTO_INVALID_JSON);
-      return false;
+      return Output.reject(res, Status.CRYPTO_INVALID_JSON);
     }
 
     req.body = data;
 
-    next();
-    return true;
+    return next();
   }
 }

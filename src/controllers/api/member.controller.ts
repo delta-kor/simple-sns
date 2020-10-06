@@ -15,20 +15,17 @@ export default class MemberController {
     body.email = validator.normalizeEmail(body.email) || '';
 
     if (!validator.isEmail(body.email)) {
-      Output.reject(res, Status.SIGNUP_INVALID_EMAIL);
-      return false;
+      return Output.reject(res, Status.SIGNUP_INVALID_EMAIL);
     }
 
     if (validator.isLength(body.password, { max: 8 })) {
-      Output.reject(res, Status.SIGNUP_SHORT_PASSWORD);
-      return false;
+      return Output.reject(res, Status.SIGNUP_SHORT_PASSWORD);
     }
 
     if (!validator.equals(body.password, body.confirm)) {
-      Output.reject(res, Status.SIGNUP_PASSWORD_UNMATCH);
-      return false;
+      return Output.reject(res, Status.SIGNUP_PASSWORD_UNMATCH);
     }
 
-    Output.resolve(res);
+    return Output.resolve(res);
   }
 }
