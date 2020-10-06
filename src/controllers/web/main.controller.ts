@@ -5,6 +5,7 @@ export default class MainController {
     if (req.isAuthenticated())
       return res.render('main/client', {
         title: 'Main | Simple-SNS',
+        user: req.user,
       });
     else
       return res.render('main/guest', {
