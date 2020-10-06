@@ -18,6 +18,7 @@
     "dev": "concurrently \"yarn dev:ts\" \"yarn dev:node\" \"yarn dev:parcel\""
   },
   "devDependencies": {
+    "@types/bcrypt-nodejs": "^0.0.31",
     "@types/compression": "^1.7.0",
     "@types/cors": "^2.8.7",
     "@types/csurf": "^1.9.36",
@@ -36,6 +37,7 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "bcrypt-nodejs": "^0.0.3",
     "chalk": "^4.1.0",
     "compression": "^1.7.4",
     "connect-mongo": "^3.2.0",
