@@ -10,7 +10,7 @@ class SetupManager {
 
   async setup(): Promise<any> {
     const nickname = Util.input('nickname');
-    const response = await this.communicate.send<Response>('/api/signup', {
+    const response = await this.communicate.send<Response>('/api/setup', {
       nickname,
     });
 
