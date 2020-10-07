@@ -4,7 +4,12 @@ import { UserDocument } from '../../models/user';
 
 export default class MemberController {
   public static signup(req: Request, res: Response): any {
-    if (req.isAuthenticated()) return res.redirect((req.query.go as string) || '/');
+    if (req.isAuthenticated()) {
+      const user = req.user as UserDocument;
+      return user.isSetupCompleted
+        ? res.redirect((req.query.go as string) || '/')
+        : res.redirect(`/setup?go=${encodeURIComponent(req.originalUrl)}`);
+    }
     return res.render('member/signup', {
       title: 'Signup | Simple-SNS',
       description: 'Signup to simple-sns',
@@ -14,7 +19,12 @@ export default class MemberController {
   }
 
   public static login(req: Request, res: Response): any {
-    if (req.isAuthenticated()) return res.redirect((req.query.go as string) || '/');
+    if (req.isAuthenticated()) {
+      const user = req.user as UserDocument;
+      return user.isSetupCompleted
+        ? res.redirect((req.query.go as string) || '/')
+        : res.redirect(`/setup?go=${encodeURIComponent(req.originalUrl)}`);
+    }
     return res.render('member/login', {
       title: 'Login | Simple-SNS',
       description: 'Login to simple-sns',
