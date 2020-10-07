@@ -22,7 +22,7 @@ const UserSchema = new Schema<UserDocument>({
   uuid: { type: String, required: true, unique: true, default: () => UUID.generate(16) },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  nickname: { type: String },
+  nickname: { type: String, required: false },
 });
 
 UserSchema.pre<UserDocument>('save', function (next) {

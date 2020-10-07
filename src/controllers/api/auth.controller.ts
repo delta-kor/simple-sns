@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import validator from 'validator';
 import Output, { Status } from '../../providers/output';
-import User from '../../models/user';
+import User, { UserDocument } from '../../models/user';
 
 export interface SignupPayload {
   email: string;
@@ -12,6 +12,10 @@ export interface SignupPayload {
 export interface LoginPayload {
   email: string;
   password: string;
+}
+
+export interface SetupPayload {
+  nickname: string;
 }
 
 export default class AuthController {
@@ -66,5 +70,29 @@ export default class AuthController {
       if (error) return next(error);
       return Output.resolve(res);
     });
+  }
+
+  public static async setup(req: Request, res: Response, next: NextFunction): Promise<any> {
+    if (!req.isAuthenticated()) return Output.reject(res, Status.SETUP_NOT_LOGINED);
+
+    const body: SetupPayload = req.body;
+
+    if (validator.isEmpty(body.nickname)) {
+      return Output.reject(res, Status.LOGIN_EMPTY_EMAIL);
+    }
+
+    body.nickname = body.nickname.trim();
+
+    if (validator.isLength(body.nickname, { min: 24 })) {
+      return Output.reject(res, Status.SETUP_TOO_LONG_NICKNAME);
+    }
+
+    const user = req.user as UserDocument;
+    user.nickname = body.nickname;
+
+    return user
+      .save()
+      .then(() => Output.resolve(res))
+      .catch(e => next(e));
   }
 }

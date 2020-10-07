@@ -26,6 +26,8 @@ export default class MemberController {
   public static setup(req: Request, res: Response): any {
     if (!req.isAuthenticated())
       return res.redirect(`/login?go=${encodeURIComponent(req.originalUrl)}`);
+    const user = req.user as UserDocument;
+    if (user.isSetupCompleted) return res.redirect((req.query.go as string) || '/');
     return res.render('member/setup', {
       title: 'Setup | Simple-SNS',
       description: 'Account setup',
