@@ -1,0 +1,15 @@
+extends ../../layouts/main
+
+block content
+  button.back Back
+  button.link(data-href='/') Main
+
+  h1 Account Setup
+  p Almost done!
+
+  input#key(type='hidden' value= key)
+  input#csrf(type='hidden' value= csrf)
+
+  input#nickname(type='text' placeholder='nickname')
+
+  button#setup Setup

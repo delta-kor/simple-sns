@@ -15,7 +15,7 @@ export interface LoginPayload {
 }
 
 export default class AuthController {
-  public static async signup(req: Request, res: Response): Promise<any> {
+  public static async signup(req: Request, res: Response, next: NextFunction): Promise<any> {
     if (req.isAuthenticated()) return Output.reject(res, Status.SIGNUP_ALREADY_LOGINED);
 
     const body: SignupPayload = req.body;
@@ -36,7 +36,10 @@ export default class AuthController {
     const created = await User.createUser(body.email, body.password);
     if (!created) return Output.reject(res, Status.SIGNUP_EXISTING_USER);
 
-    return Output.resolve(res);
+    return req.login(created, error => {
+      if (error) return next(error);
+      return Output.resolve(res);
+    });
   }
 
   public static async login(req: Request, res: Response, next: NextFunction): Promise<any> {

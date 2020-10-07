@@ -8,6 +8,7 @@ export interface UserDocument extends Document {
   password: string;
   nickname: string;
   comparePassword: (password: string) => Promise<boolean>;
+  isSetupCompleted: boolean;
 }
 
 export interface UserModel extends Model<UserDocument> {
@@ -46,6 +47,10 @@ UserSchema.methods.comparePassword = async function (password: string): Promise<
     });
   });
 };
+
+UserSchema.virtual('isSetupCompleted').get(function () {
+  return !!this.nickname;
+});
 
 UserSchema.statics.getUserByUUID = async function (uuid: string): Promise<UserDocument | null> {
   const user = await this.findOne({ uuid }).exec();

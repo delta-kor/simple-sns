@@ -41,7 +41,8 @@ class SignupManager {
       return alert(`Signup failed [${status}]`);
     }
 
-    location.href = new URLSearchParams(location.search).get('go') || '/';
+    const go = new URLSearchParams(location.search).get('go') || '/';
+    location.href = `/setup?go=${encodeURIComponent(go)}`;
   }
 }
 

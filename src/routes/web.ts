@@ -8,5 +8,6 @@ const router = Router();
 router.get('/', MainController.index);
 router.get('/signup', TicketController.book, MemberController.signup);
 router.get('/login', TicketController.book, MemberController.login);
+router.get('/setup', TicketController.book, MemberController.setup);
 
 export default router;
