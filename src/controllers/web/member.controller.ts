@@ -46,6 +46,11 @@ export default class MemberController {
     });
   }
 
+  public static logout(req: Request, res: Response): any {
+    req.logout();
+    res.redirect('/');
+  }
+
   public static isAuthenticated(req: Request, res: Response, next: NextFunction): any {
     if (req.isAuthenticated()) {
       const user = req.user as UserDocument;

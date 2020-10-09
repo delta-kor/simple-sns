@@ -9,5 +9,6 @@ router.get('/', MainController.index);
 router.get('/signup', TicketController.book, MemberController.signup);
 router.get('/login', TicketController.book, MemberController.login);
 router.get('/setup', TicketController.book, MemberController.setup);
+router.get('/logout', MemberController.logout);
 
 export default router;
