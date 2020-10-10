@@ -24,6 +24,7 @@ export default class Http implements Middleware {
         extended: true,
       })
     );
+
     application.use(
       session({
         name: 'ssns',
@@ -39,7 +40,9 @@ export default class Http implements Middleware {
         }),
       })
     );
+
     application.use(compression());
+
     application.use(
       lusca({
         xframe: 'sameorigin',
