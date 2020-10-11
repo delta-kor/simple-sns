@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import logSymbols from 'log-symbols';
 
 class Log {
-  private index: number = 0;
+  private index: number = 1;
 
   info(message: string): void {
     console.log(chalk.yellow(this.index), chalk.blue(logSymbols.info), message);
