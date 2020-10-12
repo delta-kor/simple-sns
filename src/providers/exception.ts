@@ -9,7 +9,7 @@ export default class Exception {
       if (req.accepts('html'))
         return res.render('error/not_found', { title: 'Not Found', description: 'Page not found' });
       if (req.accepts('json')) return Output.reject(res, Status.NOT_FOUND, 'Not found');
-      return res.type('text').send('404');
+      return res.type('text').send('Not found');
     });
 
     application.use((err: Error | any, req: Request, res: Response, next: NextFunction) => {
