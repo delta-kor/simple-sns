@@ -21,7 +21,7 @@ export default class Exception {
             description: 'Access forbidden',
           });
         if (req.accepts('json')) return Output.reject(res, Status.CSRF_ERROR);
-        return res.type('text').send('CSRF error');
+        return res.type('text').send('Forbidden');
       }
 
       Log.error(err.stack);
