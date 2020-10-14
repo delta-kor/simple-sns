@@ -15,7 +15,7 @@ export interface UserModel extends Model<UserDocument> {
   getUserByUUID(uuid: string): Promise<UserDocument | null>;
   getUserByEmail(email: string): Promise<UserDocument | null>;
   getUser(email: string, password: string): Promise<UserDocument | null>;
-  createUser(email: string, password: string): Promise<UserDocument | false>;
+  createUser(email: string, password: string): Promise<UserDocument | null>;
 }
 
 const UserSchema = new Schema<UserDocument>({
@@ -75,9 +75,9 @@ UserSchema.statics.getUser = async function (
 UserSchema.statics.createUser = async function (
   email: string,
   password: string
-): Promise<UserDocument | false> {
+): Promise<UserDocument | null> {
   const exists = await User.getUserByEmail(email);
-  if (exists) return false;
+  if (exists) return null;
 
   const user = new User({ email, password });
   return user.save();
