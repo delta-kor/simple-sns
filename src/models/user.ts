@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt-nodejs';
-import UUID from '../utils/uuid';
 import { Document, Model, model, Schema } from 'mongoose';
+import UUID from '../utils/uuid';
 
 export interface UserDocument extends Document {
   uuid: string;
