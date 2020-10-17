@@ -69,7 +69,8 @@ UserSchema.statics.getUser = async function (
   const user = await User.getUserByEmail(email);
   if (!user) return null;
 
-  return (await user.comparePassword(password)) ? user : null;
+  const matches = await user.comparePassword(password);
+  return matches ? user : null;
 };
 
 UserSchema.statics.createUser = async function (
