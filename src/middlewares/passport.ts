@@ -1,6 +1,6 @@
+import { Application } from 'express';
 import passport from 'passport';
 import { Strategy } from 'passport-local';
-import { Application } from 'express';
 import User, { UserDocument } from '../models/user';
 
 export default class Passport implements Middleware {
