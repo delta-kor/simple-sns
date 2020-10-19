@@ -17,9 +17,7 @@ export default class Ticket {
           },
         },
         (err, publicKey, privateKey) => {
-          if (err) {
-            return reject(err);
-          }
+          if (err) return reject(err);
           return resolve({ public: publicKey.toString(), private: privateKey.toString() });
         }
       );
