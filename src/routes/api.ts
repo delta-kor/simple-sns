@@ -5,7 +5,7 @@ import AuthController from '../controllers/api/auth.controller';
 const router = Router();
 
 router.post('/signup', CryptoController.resolve, AuthController.signup);
-router.post('/login', CryptoController.resolve, AuthController.login);
 router.post('/setup', CryptoController.resolve, AuthController.setup);
+router.post('/login', CryptoController.resolve, AuthController.login);
 
 export default router;
