@@ -1,8 +1,8 @@
-import { Application, static as Statics } from 'express';
+import express, { Application } from 'express';
 import Local from '../providers/local';
 
 export default class Static implements Middleware {
   public static mount(application: Application): void {
-    application.use(Statics('dist/client', { maxAge: Local.CACHE }));
+    application.use(express.static('dist/client', { maxAge: Local.CACHE }));
   }
 }
