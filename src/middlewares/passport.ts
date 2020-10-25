@@ -11,7 +11,6 @@ export default class Passport implements Middleware {
     passport.serializeUser<UserDocument, string>((user, done) => {
       return done(null, user.uuid);
     });
-
     passport.deserializeUser<UserDocument, string>(async (id, done) => {
       const user = await User.getUserByUUID(id);
       return user ? done(null, user) : done(null);
