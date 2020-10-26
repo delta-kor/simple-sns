@@ -28,4 +28,4 @@ app.on('deploy', port => {
   Log.success(`Started in port ${port}`);
 });
 
-void app.init();
+app.init();
