@@ -8,7 +8,7 @@ app.on('init', () => {
 });
 
 app.on('mount_middleware', middlewares => {
-  Log.info(`${middlewares} middlewares mounted`);
+  Log.info(`Total ${middlewares} middlewares mounted`);
 });
 
 app.on('load_database', () => {
