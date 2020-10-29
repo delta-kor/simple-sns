@@ -54,6 +54,7 @@ export default class Http implements Middleware {
         xssFilter: false,
       })
     );
+    
     application.use(csurf());
     application.use(
       cors({
