@@ -36,7 +36,6 @@ export default class Http implements Middleware {
         },
         store: new MongoStore({
           url: Local.DB,
-          autoReconnect: true,
         }),
       })
     );
