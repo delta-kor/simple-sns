@@ -30,7 +30,7 @@ export default class Http implements Middleware {
         name: 'ssns',
         resave: true,
         secret: Local.SECRET,
-        saveUninitialized: true,
+        saveUninitialized: false,
         cookie: {
           maxAge: Local.SESSION_AGE,
         },
