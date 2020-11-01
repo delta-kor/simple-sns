@@ -7,7 +7,7 @@ import Passport from './passport';
 export default class Kernel implements Middleware {
   public static mount(application: Application): number {
     const middlewares: typeof Middleware[] = [Http, View, Static, Passport];
-    middlewares.forEach(middleware => middleware.mount(application));
+    middlewares.forEach(target =>  target.mount(application));
 
     return middlewares.length;
   }
