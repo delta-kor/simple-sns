@@ -25,7 +25,7 @@ app.on('ready', () => {
 });
 
 app.on('deploy', port => {
-  Log.success(`Started in port ${port}`);
+  Log.success(`Deployed in port ${port}`);
 });
 
 app.init();
