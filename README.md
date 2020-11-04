@@ -1,2 +1,2 @@
-# simple-sns
+# SIMPLE-SNS
 sns service for practice
