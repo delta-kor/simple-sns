@@ -49,7 +49,7 @@ UserSchema.methods.comparePassword = async function (password: string): Promise<
 };
 
 UserSchema.virtual('isSetupCompleted').get(function () {
-  return !!this.nickname;
+  return typeof this.nickname !== 'undefined';
 });
 
 UserSchema.statics.getUserByUUID = async function (uuid: string): Promise<UserDocument | null> {
