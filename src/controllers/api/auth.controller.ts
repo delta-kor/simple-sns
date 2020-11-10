@@ -37,8 +37,8 @@ export default class AuthController {
       return Output.reject(res, Status.SIGNUP_PASSWORD_UNMATCH);
     }
 
-    const created = await User.createUser(body.email, body.password);
-    if (!created) return Output.reject(res, Status.SIGNUP_EXISTING_USER);
+    const user = await User.createUser(body.email, body.password);
+    if (!user) return Output.reject(res, Status.SIGNUP_EXISTING_USER);
 
     return req.login(created, error => {
       if (error) return next(error);
