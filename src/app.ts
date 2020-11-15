@@ -26,8 +26,8 @@ export class App extends EventEmitter {
   }
 
   private mountMiddlewares(): void {
-    const middlewares = Kernel.mount(this.application);
-    this.emit('mount_middleware', middlewares);
+    const length = Kernel.mount(this.application);
+    this.emit('mount_middleware',  length);
   }
 
   private async loadDatabase(): Promise<void> {
