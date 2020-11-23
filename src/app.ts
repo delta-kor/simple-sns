@@ -18,7 +18,7 @@ export class App extends EventEmitter {
   private readonly application: Application;
   private readonly server: Server;
 
-  constructor(port: number) {
+  constructor(port: number = 80) {
     super();
     this.port = port;
     this.application = express();

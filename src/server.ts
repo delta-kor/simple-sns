@@ -1,7 +1,7 @@
 import { App } from './app';
 import Log from './utils/log';
 
-const app = new App(80);
+const app = new App();
 
 app.on('init', () => {
   Log.info('Initializing app');
