@@ -42,7 +42,7 @@ export default class Output {
   }
 
   public static reject(res: Response, status: Status, message?: string): void {
-    res.status(401);
+    res.status(400);
     res.json({
       resolved: false,
       status,
