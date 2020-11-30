@@ -32,7 +32,6 @@ export default class Output {
     status: Status = Status.SUCCESS,
     message?: string
   ): void {
-    res.status(200);
     res.json({
       resolved: true,
       data,
