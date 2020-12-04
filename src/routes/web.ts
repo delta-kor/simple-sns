@@ -1,7 +1,7 @@
 import { Router } from 'express';
+import TicketController from '../controllers/web/ticket.controller';
 import MainController from '../controllers/web/main.controller';
 import MemberController from '../controllers/web/member.controller';
-import TicketController from '../controllers/web/ticket.controller';
 
 const router = Router();
 
