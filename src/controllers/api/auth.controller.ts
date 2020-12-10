@@ -51,13 +51,12 @@ export default class AuthController {
 
     const body: LoginPayload = req.body;
 
-    if (validator.isEmpty(body.email)) {
+    if (validator.isEmpty(body.email))
       return Output.reject(res, Status.LOGIN_EMPTY_EMAIL);
-    }
 
-    if (validator.isEmpty(body.password)) {
+    if (validator.isEmpty(body.password))
       return Output.reject(res, Status.LOGIN_EMPTY_PASSWORD);
-    }
+
 
     body.email = validator.normalizeEmail(body.email) || '';
 
