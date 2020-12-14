@@ -61,9 +61,8 @@ export default class AuthController {
     body.email = validator.normalizeEmail(body.email) || '';
 
     const user = await User.getUser(body.email, body.password);
-    if (!user) {
+    if (!user)
       return Output.reject(res, Status.LOGIN_USER_NOT_FOUND);
-    }
 
     return req.login(user, error => {
       if (error) return next(error);
