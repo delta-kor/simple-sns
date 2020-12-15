@@ -75,9 +75,8 @@ export default class AuthController {
 
     const body: SetupPayload = req.body;
 
-    if (validator.isEmpty(body.nickname)) {
+    if (validator.isEmpty(body.nickname))
       return Output.reject(res, Status.LOGIN_EMPTY_EMAIL);
-    }
 
     body.nickname = body.nickname.trim();
 
