@@ -80,9 +80,8 @@ export default class AuthController {
 
     body.nickname = body.nickname.trim();
 
-    if (validator.isLength(body.nickname, { min: 24 })) {
+    if (validator.isLength(body.nickname, { min: 24 }))
       return Output.reject(res, Status.SETUP_TOO_LONG_NICKNAME);
-    }
 
     const user = req.user as UserDocument;
     user.nickname = body.nickname;
