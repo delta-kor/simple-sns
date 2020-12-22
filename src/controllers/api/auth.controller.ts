@@ -89,6 +89,6 @@ export default class AuthController {
     return user
       .save()
       .then(() => Output.resolve(res))
-      .catch(e => next(e));
+      .catch(next);
   }
 }
