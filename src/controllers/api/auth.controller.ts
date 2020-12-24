@@ -33,9 +33,8 @@ export default class AuthController {
       return Output.reject(res, Status.SIGNUP_SHORT_PASSWORD);
     }
 
-    if (!validator.equals(body.password, body.confirm)) {
+    if (!validator.equals(body.password, body.confirm))
       return Output.reject(res, Status.SIGNUP_PASSWORD_UNMATCH);
-    }
 
     const user = await User.createUser(body.email, body.password);
     if (!user) return Output.reject(res, Status.SIGNUP_EXISTING_USER);
