@@ -25,9 +25,8 @@ export default class AuthController {
     const body: SignupPayload = req.body;
     body.email = validator.normalizeEmail(body.email) || '';
 
-    if (!validator.isEmail(body.email)) {
+    if (!validator.isEmail(body.email))
       return Output.reject(res, Status.SIGNUP_INVALID_EMAIL);
-    }
 
     if (validator.isLength(body.password, { max: 8 })) {
       return Output.reject(res, Status.SIGNUP_SHORT_PASSWORD);
